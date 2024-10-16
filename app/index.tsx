@@ -10,10 +10,11 @@ export default function Index() {
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: "plum",
+        padding: 20,
       }}
     >
       <ScrollView>
-        {/* nest it inside the view component so that scroll view occupies the full height of its parent component */}
+        {/* it needs a bounded height so you can style it but it overlaps with the mobile status bar so nest it inside the view component so that scroll view occupies the full height of its parent component */}
         <ImageBackground
           source={LogoImg}
           style={{
