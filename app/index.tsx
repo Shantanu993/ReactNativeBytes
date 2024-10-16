@@ -7,6 +7,7 @@ import {
   Button,
   Pressable,
   Modal,
+  StatusBar,
 } from "react-native";
 import { useState } from "react";
 // import LogoImg from "../assets/images/icon.png";
@@ -14,6 +15,7 @@ const LogoImg = require("../assets/images/icon.png"); // require is used to impo
 
 export default function Index() {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isStatusBarVisible, setIsStatusBarVisible] = useState(false);
   return (
     <View
       style={{
@@ -24,6 +26,25 @@ export default function Index() {
         padding: 20,
       }}
     >
+      <StatusBar
+        backgroundColor="green"
+        barStyle="dark-content"
+        hidden={isStatusBarVisible}
+      />
+      <View
+        style={{
+          padding: 5,
+          backgroundColor: "blue",
+          marginBottom: 10,
+          borderRadius: 10,
+        }}
+      >
+        <Button
+          title="Toggle Status Bar Visibility"
+          onPress={() => setIsStatusBarVisible(!isStatusBarVisible)}
+          color="white"
+        />
+      </View>
       <ScrollView>
         {/* it needs a bounded height so you can style it but it overlaps with the mobile status bar so nest it inside the view component so that scroll view occupies the full height of its parent component */}
         <ImageBackground
