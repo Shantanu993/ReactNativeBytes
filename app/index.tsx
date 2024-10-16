@@ -9,6 +9,7 @@ import {
   Modal,
   StatusBar,
   ActivityIndicator,
+  Alert,
 } from "react-native";
 import { useState } from "react";
 // import LogoImg from "../assets/images/icon.png";
@@ -48,6 +49,31 @@ export default function Index() {
       </View>
 
       <ActivityIndicator size="large" color="green" animating={true} />
+
+      <Button
+        title="Show Alert 1"
+        onPress={() => Alert.alert("Alert 1 Title")}
+      />
+      <Button
+        title="Show Alert 2"
+        onPress={() => Alert.alert("Alert 2 Title", "Alert 2 Message")}
+      />
+      <Button
+        title="Show Alert 3"
+        onPress={() =>
+          Alert.alert("Alert 3 Title", "Alert 3 Message", [
+            {
+              text: "Cancel",
+              onPress: () => console.log("Cancel Pressed"),
+            },
+            { text: "OK", onPress: () => console.log("OK Pressed") },
+            {
+              text: "NOT SURE",
+              onPress: () => console.log("NOT SURE Pressed"),
+            },
+          ])
+        }
+      />
 
       <ScrollView>
         {/* it needs a bounded height so you can style it but it overlaps with the mobile status bar so nest it inside the view component so that scroll view occupies the full height of its parent component */}
