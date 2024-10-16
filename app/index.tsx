@@ -1,5 +1,6 @@
 import { Text, View, Image } from "react-native";
-import LogoImg from "../assets/images/icon.png";
+// import LogoImg from "../assets/images/icon.png";
+const LogoImg = require("../assets/images/icon.png"); // require is used to import images
 
 export default function Index() {
   return (
@@ -17,6 +18,13 @@ export default function Index() {
           height: 200,
           width: 200,
         }}
+      />
+      <Image
+        source={{ uri: "https://picsum.photos/200" }} // need to pass object with uri key for network images
+        style={{
+          height: 200,
+          width: 200,
+        }} // mandatory to set height and width
       />
       <View
         style={{
