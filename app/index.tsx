@@ -1,4 +1,11 @@
-import { Text, View, Image, ImageBackground, ScrollView } from "react-native";
+import {
+  Text,
+  View,
+  Image,
+  ImageBackground,
+  ScrollView,
+  Button,
+} from "react-native";
 // import LogoImg from "../assets/images/icon.png";
 const LogoImg = require("../assets/images/icon.png"); // require is used to import images
 
@@ -24,13 +31,12 @@ export default function Index() {
             alignItems: "center",
           }}
         >
-          {/* <Image
-          source={LogoImg}
-          style={{
-            height: 200,
-            width: 200,
-          }}
-        /> */}
+          <Button
+            title="Press me"
+            onPress={() => console.log("button pressed")}
+            color="red"
+            disabled
+          />
           <Text>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam,
             velit nostrum hic natus animi ipsum id, culpa possimus minima amet
