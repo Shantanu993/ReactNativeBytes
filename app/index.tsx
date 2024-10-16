@@ -6,11 +6,14 @@ import {
   ScrollView,
   Button,
   Pressable,
+  Modal,
 } from "react-native";
+import { useState } from "react";
 // import LogoImg from "../assets/images/icon.png";
 const LogoImg = require("../assets/images/icon.png"); // require is used to import images
 
 export default function Index() {
+  const [isModalVisible, setIsModalVisible] = useState(false);
   return (
     <View
       style={{
@@ -33,11 +36,32 @@ export default function Index() {
           }}
         >
           <Button
-            title="Press me"
-            onPress={() => console.log("button pressed")}
+            title="Open Modal"
+            onPress={() => setIsModalVisible(true)}
             color="red"
-            disabled
           />
+          <Modal
+            visible={isModalVisible}
+            onRequestClose={() => setIsModalVisible(false)} // add gesture or back button closing for android
+            animationType="slide" // add animation to modal
+            presentationStyle="pageSheet" // only for ios
+          >
+            <View
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+                backgroundColor: "green",
+              }}
+            >
+              <Text>Modal Content</Text>
+              <Button
+                title="Close Modal"
+                onPress={() => setIsModalVisible(false)}
+                color="red"
+              />
+            </View>
+          </Modal>
           <Pressable
             onPress={() => console.log("text pressed")}
             style={{
