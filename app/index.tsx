@@ -13,7 +13,6 @@ export default function Index() {
       <View
         style={{
           backgroundColor: "lightblue",
-          padding: 10,
           height: 200,
           width: 200,
         }}
@@ -21,12 +20,13 @@ export default function Index() {
       <View
         style={{
           backgroundColor: "lightgreen",
-          padding: 10,
           height: 200,
           width: 200,
         }}
       ></View>
-      <Text>Hello World!</Text>
+      <Text>
+        Hello World! <Text style={{ color: "blue" }}>This is nested text</Text>
+      </Text>
     </View>
   );
 }
