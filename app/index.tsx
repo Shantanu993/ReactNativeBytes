@@ -5,6 +5,7 @@ import {
   ImageBackground,
   ScrollView,
   Button,
+  Pressable,
 } from "react-native";
 // import LogoImg from "../assets/images/icon.png";
 const LogoImg = require("../assets/images/icon.png"); // require is used to import images
@@ -37,30 +38,33 @@ export default function Index() {
             color="red"
             disabled
           />
-          <Text>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam,
-            velit nostrum hic natus animi ipsum id, culpa possimus minima amet
-            quidem? Cum optio harum esse dicta modi cupiditate, doloremque
-            fuga?Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Labore officiis obcaecati error porro, minus mollitia minima sed
-            animi unde! Molestiae sapiente libero sed incidunt, ea aspernatur
-            eos quisquam facilis maiores. Lorem ipsum dolor sit amet
-            consectetur, adipisicing elit. Placeat ducimus hic qui. Nisi, velit
-            ipsam? Fugiat impedit officia ad maxime. Lorem ipsum dolor sit amet
-            consectetur adipisicing elit. Reprehenderit exercitationem dolorem
-            quam vero amet sunt magnam voluptatem quasi, suscipit accusamus
-            doloremque vitae impedit quas voluptas cum perferendis aliquam
-            veniam atque nobis porro eaque nulla aspernatur libero. Hic quia
-            laudantium obcaecati debitis fugit amet numquam. Tenetur natus illum
-            quaerat doloribus et.
-          </Text>
-          <Image
-            source={{ uri: "https://picsum.photos/200" }} // need to pass object with uri key for network images
+          <Pressable
+            onPress={() => console.log("text pressed")}
             style={{
-              height: 200,
-              width: 200,
-            }} // mandatory to set height and width
-          />
+              backgroundColor: "blue",
+              padding: 10,
+              margin: 10,
+              borderRadius: 5,
+            }}
+          >
+            <Text style={{ color: "white" }}>
+              pressable text and not a button
+            </Text>
+          </Pressable>
+          <Pressable
+            onPress={() => console.log("Image onPress pressed")}
+            onLongPress={() => console.log("Image onLongPress pressed")}
+            onPressIn={() => console.log("Image onPressIn pressed")}
+            onPressOut={() => console.log("Image onPressOut pressed")}
+          >
+            <Image
+              source={{ uri: "https://picsum.photos/200" }} // need to pass object with uri key for network images
+              style={{
+                height: 200,
+                width: 200,
+              }} // mandatory to set height and width
+            />
+          </Pressable>
           <View
             style={{
               backgroundColor: "lightgreen",
