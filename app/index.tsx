@@ -42,7 +42,7 @@ export default function Index() {
           />
           <Modal
             visible={isModalVisible}
-            onRequestClose={() => setIsModalVisible(false)} // add gesture or back button closing for android
+            onRequestClose={() => setIsModalVisible(false)} // add gesture or back button closing for android. or when it is dimissed by other interactions
             animationType="slide" // add animation to modal
             presentationStyle="pageSheet" // only for ios
           >
