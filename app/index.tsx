@@ -14,6 +14,7 @@ import {
 import { useState } from "react";
 // import LogoImg from "../assets/images/icon.png";
 const LogoImg = require("../assets/images/icon.png"); // require is used to import images
+import Greet from "../components/Greet";
 
 export default function Index() {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -47,6 +48,8 @@ export default function Index() {
           color="white"
         />
       </View>
+
+      <Greet name="Custom Component" />
 
       <ActivityIndicator size="large" color="green" animating={true} />
 
