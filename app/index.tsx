@@ -1,4 +1,5 @@
-import { Text, View } from "react-native";
+import { Text, View, Image } from "react-native";
+import LogoImg from "../assets/images/icon.png";
 
 export default function Index() {
   return (
@@ -10,13 +11,13 @@ export default function Index() {
         backgroundColor: "plum",
       }}
     >
-      <View
+      <Image
+        source={LogoImg}
         style={{
-          backgroundColor: "lightblue",
           height: 200,
           width: 200,
         }}
-      ></View>
+      />
       <View
         style={{
           backgroundColor: "lightgreen",
