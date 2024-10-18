@@ -3,7 +3,12 @@ import { Text, View, StyleSheet } from "react-native";
 export default function Index() {
   return (
     <View style={styles.container}>
-      <Text>StyleSheet API</Text>
+      <View style={[styles.box, styles.lightGreen]}>
+        <Text>LightGreen box</Text>
+      </View>
+      <View style={[styles.box, styles.lightBlue]}>
+        <Text>LightBlue Box</Text>
+      </View>
     </View>
   );
 }
@@ -16,5 +21,16 @@ const styles = StyleSheet.create({
     padding: 10,
     justifyContent: "center",
     alignItems: "center",
+  },
+  box: {
+    width: 100,
+    height: 100,
+    padding: 10,
+  },
+  lightGreen: {
+    backgroundColor: "lightgreen",
+  },
+  lightBlue: {
+    backgroundColor: "lightblue",
   },
 });
