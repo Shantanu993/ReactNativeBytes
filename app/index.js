@@ -5,7 +5,17 @@ export default function Index() {
     <View style={styles.container}>
       <View style={[styles.box, styles.lightGreen]}>
         {/* multiple styles can be applied by passing array to the style prop*/}
-        <Text>LightGreen box</Text>
+        <Text
+          style={{
+            borderWidth: 2,
+            borderColor: "blue",
+            borderRadius: 5,
+            padding: 10,
+            backgroundColor: "yellow",
+          }}
+        >
+          LightGreen box
+        </Text>
       </View>
       <View style={[styles.box, styles.lightBlue]}>
         <Text>LightBlue Box</Text>
@@ -29,6 +39,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
     paddingVertical: 10,
     marginBottom: 10,
+    borderWidth: 2,
+    borderColor: "purple",
+    borderRadius: 5,
+    justifyContent: "center",
+    alignItems: "center",
   },
   lightGreen: {
     backgroundColor: "lightgreen",
