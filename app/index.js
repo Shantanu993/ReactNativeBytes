@@ -4,6 +4,7 @@ export default function Index() {
   return (
     <View style={styles.container}>
       <View style={[styles.box, styles.lightGreen]}>
+        {/* multiple styles can be applied by passing array to the style prop*/}
         <Text>LightGreen box</Text>
       </View>
       <View style={[styles.box, styles.lightBlue]}>
@@ -25,7 +26,9 @@ const styles = StyleSheet.create({
   box: {
     width: 100,
     height: 100,
-    padding: 10,
+    paddingHorizontal: 5,
+    paddingVertical: 10,
+    marginBottom: 10,
   },
   lightGreen: {
     backgroundColor: "lightgreen",
