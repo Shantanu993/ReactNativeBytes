@@ -4,10 +4,9 @@ import {
   StyleSheet,
   useWindowDimensions,
   Platform,
-  Pressable,
   SafeAreaView,
 } from "react-native";
-import CustomButton from "../components/CustomButton";
+import CustomButton from "../components/CustomButton/CustomButton";
 import * as SystemUI from "expo-system-ui";
 
 export default function Index() {
@@ -31,18 +30,6 @@ export default function Index() {
           >
             Welcome!
           </Text>
-          <Pressable
-            onPress={() => alert("Pressed")}
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-              backgroundColor: "lightblue",
-              borderRadius: 5,
-              padding: 10,
-            }}
-          >
-            <Text style={{ fontSize: 24, color: "green" }}>hello</Text>
-          </Pressable>
           <CustomButton title="press me" onPress={() => alert("Pressed")} />
         </View>
       </View>
