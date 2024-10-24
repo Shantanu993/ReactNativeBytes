@@ -3,8 +3,12 @@ import {
   View,
   StyleSheet,
   useWindowDimensions,
+  Platform,
+  Pressable,
   SafeAreaView,
 } from "react-native";
+import CustomButton from "../components/CustomButton";
+import * as SystemUI from "expo-system-ui";
 
 export default function Index() {
   const windowWidth = useWindowDimensions().width;
@@ -22,14 +26,32 @@ export default function Index() {
             },
           ]}
         >
-          <Text style={{ fontSize: windowWidth > 500 ? "60" : "24" }}>
+          <Text
+            style={[styles.text, { fontSize: windowWidth > 500 ? "60" : "24" }]}
+          >
             Welcome!
           </Text>
+          <Pressable
+            onPress={() => alert("Pressed")}
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "lightblue",
+              borderRadius: 5,
+              padding: 10,
+            }}
+          >
+            <Text style={{ fontSize: 24, color: "green" }}>hello</Text>
+          </Pressable>
+          <CustomButton title="press me" onPress={() => alert("Pressed")} />
         </View>
       </View>
     </SafeAreaView>
   );
 }
+
+//handle the color of unsfe area
+SystemUI.setBackgroundColorAsync("plum");
 
 // const windowWidth = Dimensions.get("window").width;
 // const windowHeight = Dimensions.get("window").height;
@@ -38,7 +60,7 @@ export default function Index() {
 const styles = StyleSheet.create({
   safeContainer: {
     flex: 1,
-    backgroundColor: "plum",
+    backgroundColor: "red",
   },
   container: {
     flex: 1,
@@ -47,7 +69,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   box: {
-    backgroundColor: "lightblue",
+    backgroundColor: Platform.OS === "android" ? "lightblue" : "lightgreen",
     // height: windowHeight > 600 ? "70%" : "90%",
     // width: windowWidth > 500 ? "60%" : "90%",
     borderRadius: 10,
@@ -56,5 +78,15 @@ const styles = StyleSheet.create({
   },
   text: {
     // fontSize: windowWidth > 500 ? "60" : "24",
+    ...Platform.select({
+      ios: {
+        color: "blue",
+        fontStyle: "italic",
+      },
+      android: {
+        color: "red",
+        fontSize: 30,
+      },
+    }),
   },
 });
