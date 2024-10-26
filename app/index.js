@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text, Platform } from "react-native";
+import { View, StyleSheet, Text, Platform, ScrollView } from "react-native";
 import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
 import * as SystemUI from "expo-system-ui";
 import PokemonCard from "../components/PokemonCard";
@@ -43,7 +43,12 @@ export default function Index() {
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
-        <PokemonCard {...charmanderData} />
+        <ScrollView>
+          <PokemonCard {...charmanderData} />
+          <PokemonCard {...pikachuData} />
+          <PokemonCard {...squirtleData} />
+          <PokemonCard {...bulbasaurData} />
+        </ScrollView>
       </SafeAreaView>
     </SafeAreaProvider>
   );
