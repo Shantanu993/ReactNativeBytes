@@ -1,8 +1,17 @@
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Text, Platform } from "react-native";
+import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
 import * as SystemUI from "expo-system-ui";
+import PokemonCard from "../components/PokemonCard";
 
 export default function Index() {
-  return <View style={styles.container}></View>;
+  return (
+    <SafeAreaProvider>
+      <SafeAreaView style={styles.container}>
+        <PokemonCard />
+        <Text>Index</Text>
+      </SafeAreaView>
+    </SafeAreaProvider>
+  );
 }
 
 SystemUI.setBackgroundColorAsync("#f5f5f5");
@@ -11,5 +20,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#f5f5f5",
+    paddingTop: Platform.OS === "android" ? 25 : 0,
   },
 });
