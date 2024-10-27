@@ -34,6 +34,12 @@ export default function Index() {
           keyExtractor={(item) => item.id.toString()}
           ItemSeparatorComponent={<View style={{ height: 10 }} />}
           ListEmptyComponent={<Text>No data found</Text>}
+          ListHeaderComponent={
+            <Text style={styles.headerText}>Pokemon List</Text>
+          }
+          ListFooterComponent={
+            <Text style={styles.footerText}>End of List</Text>
+          }
         />
       </View>
     </SafeAreaView>
@@ -61,5 +67,18 @@ const styles = StyleSheet.create({
   },
   cardText: {
     fontSize: 20,
+  },
+  headerText: {
+    fontSize: 30,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginBottom: 10,
+  },
+  footerText: {
+    fontSize: 20,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginTop: 10,
+    marginBottom: 10,
   },
 });
