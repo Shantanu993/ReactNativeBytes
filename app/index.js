@@ -5,20 +5,32 @@ import {
   StatusBar,
   ScrollView,
   SafeAreaView,
+  FlatList,
 } from "react-native";
 import pokemonList from "../data.json";
 
 export default function Index() {
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.scrollView}>
+      {/* <ScrollView style={styles.scrollView}>
         {pokemonList.map((pokemon) => (
           <View key={pokemon.id} style={styles.pokemonCard}>
             <Text style={styles.cardText}>{pokemon.name}</Text>
             <Text style={styles.cardText}>{pokemon.type}</Text>
           </View>
-        ))}
-      </ScrollView>
+        ))} 
+      </ScrollView>*/}
+      <FlatList // don't use FlatList inside ScrollView
+        data={pokemonList}
+        renderItem={({ item }) => {
+          return (
+            <View key={item.id} style={styles.pokemonCard}>
+              <Text style={styles.cardText}>{item.name}</Text>
+              <Text style={styles.cardText}>{item.type}</Text>
+            </View>
+          );
+        }}
+      />
     </SafeAreaView>
   );
 }
