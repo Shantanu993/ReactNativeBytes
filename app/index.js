@@ -33,6 +33,7 @@ export default function Index() {
           }}
           keyExtractor={(item) => item.id.toString()}
           ItemSeparatorComponent={<View style={{ height: 10 }} />}
+          ListEmptyComponent={<Text>No data found</Text>}
         />
       </View>
     </SafeAreaView>
