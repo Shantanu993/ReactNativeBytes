@@ -32,6 +32,7 @@ export default function Index() {
             );
           }}
           keyExtractor={(item) => item.id.toString()}
+          ItemSeparatorComponent={<View style={{ height: 10 }} />}
         />
       </View>
     </SafeAreaView>
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
     margin: 5,
     borderRadius: 10,
     borderWidth: 1,
-    marginBottom: 10,
+    // marginBottom: 10,
   },
   cardText: {
     fontSize: 20,
