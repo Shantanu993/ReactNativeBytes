@@ -20,17 +20,20 @@ export default function Index() {
           </View>
         ))} 
       </ScrollView>*/}
-      <FlatList // don't use FlatList inside ScrollView
-        data={pokemonList}
-        renderItem={({ item }) => {
-          return (
-            <View key={item.id} style={styles.pokemonCard}>
-              <Text style={styles.cardText}>{item.name}</Text>
-              <Text style={styles.cardText}>{item.type}</Text>
-            </View>
-          );
-        }}
-      />
+      <View style={styles.scrollView}>
+        <FlatList // don't use FlatList inside ScrollView
+          data={pokemonList}
+          renderItem={({ item }) => {
+            return (
+              <View key={item.id} style={styles.pokemonCard}>
+                <Text style={styles.cardText}>{item.name}</Text>
+                <Text style={styles.cardText}>{item.type}</Text>
+              </View>
+            );
+          }}
+          keyExtractor={(item) => item.id.toString()}
+        />
+      </View>
     </SafeAreaView>
   );
 }
@@ -47,7 +50,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   pokemonCard: {
-    backgroundColor: "white",
+    backgroundColor: "lightgray",
     padding: 10,
     margin: 5,
     borderRadius: 10,
