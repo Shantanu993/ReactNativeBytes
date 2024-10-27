@@ -1,65 +1,48 @@
-import { View, StyleSheet, Text, Platform, ScrollView } from "react-native";
-import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
-import * as SystemUI from "expo-system-ui";
-import PokemonCard from "../components/PokemonCard";
+import {
+  Text,
+  View,
+  StyleSheet,
+  StatusBar,
+  ScrollView,
+  SafeAreaView,
+} from "react-native";
+import pokemonList from "../data.json";
 
 export default function Index() {
-  const charmanderData = {
-    name: "Charmander",
-    image: require("../assets/charmander.png"),
-    type: "Fire",
-    hp: 39,
-    moves: ["Scratch", "Ember", "Growl", "Leer"],
-    weaknesses: ["Water", "Rock"],
-  };
-
-  const squirtleData = {
-    name: "Squirtle",
-    image: require("../assets/squirtle.png"), // Replace with the actual image path
-    type: "Water",
-    hp: 44,
-    moves: ["Tackle", "Water Gun", "Tail Whip", "Withdraw"],
-    weaknesses: ["Electric", "Grass"],
-  };
-
-  const bulbasaurData = {
-    name: "Bulbasaur",
-    image: require("../assets/bulbasaur.png"), // Replace with the actual image path
-    type: "Grass",
-    hp: 45,
-    moves: ["Tackle", "Vine Whip", "Growl", "Leech Seed"],
-    weaknesses: ["Fire", "Ice", "Flying", "Psychic"],
-  };
-
-  const pikachuData = {
-    name: "Pikachu",
-    image: require("../assets/pikachu.png"), // Replace with the actual image path
-    type: "Electric",
-    hp: 35,
-    moves: ["Quick Attack", "Thunderbolt", "Tail Whip", "Growl"],
-    weaknesses: ["Ground"],
-  };
-
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={styles.container}>
-        <ScrollView>
-          <PokemonCard {...charmanderData} />
-          <PokemonCard {...pikachuData} />
-          <PokemonCard {...squirtleData} />
-          <PokemonCard {...bulbasaurData} />
-        </ScrollView>
-      </SafeAreaView>
-    </SafeAreaProvider>
+    <SafeAreaView style={styles.container}>
+      <ScrollView style={styles.scrollView}>
+        {pokemonList.map((pokemon) => (
+          <View key={pokemon.id} style={styles.pokemonCard}>
+            <Text style={styles.cardText}>{pokemon.name}</Text>
+            <Text style={styles.cardText}>{pokemon.type}</Text>
+          </View>
+        ))}
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
-SystemUI.setBackgroundColorAsync("#f5f5f5");
 // key value pairs are used to define styles
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#f5f5f5",
-    paddingTop: Platform.OS === "android" ? 25 : 0,
+    justifyContent: "center",
+    paddingTop: StatusBar.currentHeight, //for android
+  },
+  scrollView: {
+    paddingHorizontal: 16,
+  },
+  pokemonCard: {
+    backgroundColor: "white",
+    padding: 10,
+    margin: 5,
+    borderRadius: 10,
+    borderWidth: 1,
+    marginBottom: 10,
+  },
+  cardText: {
+    fontSize: 20,
   },
 });
