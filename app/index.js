@@ -8,11 +8,13 @@ import {
   FlatList,
   SectionList,
   TextInput,
+  Switch,
 } from "react-native";
 import { useState } from "react";
 
 export default function Index() {
   const [name, setName] = useState("");
+  const [isDarkMode, setIsDarkMode] = useState(false);
   return (
     <SafeAreaView style={styles.container}>
       <TextInput
@@ -30,6 +32,15 @@ export default function Index() {
         multiline
       />
       <Text style={styles.text}>My name is {name}</Text>
+      <View style={styles.switchContainer}>
+        <Text style={styles.text}>Dark Mode</Text>
+        <Switch
+          value={isDarkMode}
+          onValueChange={() => setIsDarkMode((previousState) => !previousState)}
+          trackColor={{ true: "green", false: "red" }}
+          thumbColor={isDarkMode ? "green" : "red"}
+        />
+      </View>
     </SafeAreaView>
   );
 }
@@ -54,5 +65,15 @@ const styles = StyleSheet.create({
   },
   multilineText: {
     height: 100,
+  },
+  switchContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    margin: 10,
+    borderColor: "black",
+    borderWidth: 1,
+    borderRadius: 5,
+    padding: 10,
+    alignItems: "center",
   },
 });
