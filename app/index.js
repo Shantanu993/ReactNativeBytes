@@ -9,39 +9,34 @@ import {
   SectionList,
   TextInput,
   Switch,
+  Button,
 } from "react-native";
 import { useState } from "react";
 
 export default function Index() {
-  const [name, setName] = useState("");
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   return (
-    <SafeAreaView style={styles.container}>
-      <TextInput
-        style={styles.input}
-        value={name}
-        onChangeText={setName}
-        placeholder="Enter your Name"
-        secureTextEntry={false}
-      />
-      <TextInput
-        style={[styles.input, styles.multilineText]}
-        value={name}
-        onChangeText={setName}
-        placeholder="Enter your Name"
-        multiline
-      />
-      <Text style={styles.text}>My name is {name}</Text>
-      <View style={styles.switchContainer}>
-        <Text style={styles.text}>Dark Mode</Text>
-        <Switch
-          value={isDarkMode}
-          onValueChange={() => setIsDarkMode((previousState) => !previousState)}
-          trackColor={{ true: "green", false: "red" }}
-          thumbColor={isDarkMode ? "green" : "red"}
+    <View style={styles.container}>
+      <View style={styles.form}>
+        <Text style={styles.label}>Username</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Enter your username"
+          value={username}
+          onChangeText={setUsername}
         />
+        <Text style={styles.label}>Password</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Enter your password"
+          secureTextEntry={true}
+          value={password}
+          onChangeText={setPassword}
+        />
+        <Button title="Login" onPress={() => {}} />
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -50,30 +45,30 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#f5f5f5",
-    paddingTop: StatusBar.currentHeight, //for android
+    paddingHorizontal: 20,
+    justifyContent: "center",
+  },
+  form: {
+    backgroundColor: "white",
+    padding: 20,
+    borderRadius: 10,
+    shadowColor: "black",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 10,
+    elevation: 5,
   },
   input: {
-    padding: 10,
-    borderRadius: 5,
-    borderWidth: 1,
-    margin: 10,
     height: 40,
-  },
-  text: {
-    fontSize: 20,
-    margin: 10,
-  },
-  multilineText: {
-    height: 100,
-  },
-  switchContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    margin: 10,
-    borderColor: "black",
+    borderColor: "gray",
     borderWidth: 1,
     borderRadius: 5,
+    marginBottom: 20,
     padding: 10,
-    alignItems: "center",
+  },
+  label: {
+    fontSize: 20,
+    marginBottom: 10,
+    fontWeight: "bold",
   },
 });
