@@ -33,6 +33,17 @@ export default function Index() {
     setErrors(errors);
     return Object.keys(errors).length === 0;
   };
+
+  const handleSubmit = () => {
+    if (validateForm()) {
+      console.log("Form submitted", password, username);
+      setUsername("");
+      setPassword("");
+      setErrors({});
+      alert("Form submitted successfully");
+    }
+  };
+
   return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -66,7 +77,7 @@ export default function Index() {
         {errors.password && (
           <Text style={styles.errorText}>{errors.password}</Text>
         )}
-        <Button title="Login" onPress={() => {}} />
+        <Button title="Login" onPress={handleSubmit} />
       </View>
     </KeyboardAvoidingView>
   );
