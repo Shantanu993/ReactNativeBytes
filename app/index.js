@@ -22,6 +22,13 @@ export default function Index() {
         placeholder="Enter your Name"
         secureTextEntry={false}
       />
+      <TextInput
+        style={[styles.input, styles.multilineText]}
+        value={name}
+        onChangeText={setName}
+        placeholder="Enter your Name"
+        multiline
+      />
       <Text style={styles.text}>My name is {name}</Text>
     </SafeAreaView>
   );
@@ -44,5 +51,8 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20,
     margin: 10,
+  },
+  multilineText: {
+    height: 100,
   },
 });
