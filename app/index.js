@@ -13,73 +13,67 @@ import {
   Image,
   KeyboardAvoidingView,
   Platform,
+  ActivityIndicator,
 } from "react-native";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Index() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState({});
+  const [postList, setPostList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
 
-  const validateForm = () => {
-    let errors = {};
-
-    if (!username) {
-      errors.username = "Username is required";
-    }
-    if (!password) {
-      errors.password = "Password is required";
-    }
-    setErrors(errors);
-    return Object.keys(errors).length === 0;
+  const fetchData = async (limit = 10) => {
+    const response = await fetch(
+      `https://jsonplaceholder.typicode.com/posts?_limit=${limit}`
+    );
+    const data = await response.json();
+    setPostList(data);
+    setIsLoading(false);
   };
 
-  const handleSubmit = () => {
-    if (validateForm()) {
-      console.log("Form submitted", password, username);
-      setUsername("");
-      setPassword("");
-      setErrors({});
-      alert("Form submitted successfully");
-    }
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const handleRefresh = () => {
+    setRefreshing(true);
+    fetchData(20);
+    setRefreshing(false);
   };
+
+  if (isLoading) {
+    return (
+      <SafeAreaView style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#0000ff" />
+        <Text>Loading...</Text>
+      </SafeAreaView>
+    );
+  }
 
   return (
-    <KeyboardAvoidingView
-      style={styles.container}
-      behavior="padding"
-      keyboardVerticalOffset={Platform.OS === "ios" ? 100 : 0}
-    >
-      <View style={styles.form}>
-        <Image
-          source={require("../assets/adaptive-icon.png")}
-          style={styles.image}
+    <SafeAreaView style={styles.container}>
+      <View style={styles.listContainer}>
+        <FlatList
+          data={postList}
+          renderItem={({ item }) => {
+            return (
+              <View style={styles.card}>
+                <Text style={styles.titleText}>{item.title}</Text>
+                <Text style={styles.bodyText}>{item.body}</Text>
+              </View>
+            );
+          }}
+          ItemSeparatorComponent={<View style={{ height: 16 }} />}
+          ListEmptyComponent={<Text>No Posts Found</Text>}
+          ListHeaderComponent={<Text style={styles.headerText}>Post List</Text>}
+          ListFooterComponent={
+            <Text style={styles.footerText}>End of list</Text>
+          }
+          refreshing={refreshing}
+          onRefresh={handleRefresh}
         />
-        <Text style={styles.label}>Username</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter your username"
-          value={username}
-          onChangeText={setUsername}
-        />
-        {errors.username && (
-          <Text style={styles.errorText}>{errors.username}</Text>
-        )}
-        <Text style={styles.label}>Password</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter your password"
-          secureTextEntry={true}
-          value={password}
-          onChangeText={setPassword}
-        />
-
-        {errors.password && (
-          <Text style={styles.errorText}>{errors.password}</Text>
-        )}
-        <Button title="Login" onPress={handleSubmit} />
       </View>
-    </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 }
 
@@ -88,40 +82,42 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#f5f5f5",
-    paddingHorizontal: 20,
-    justifyContent: "center",
+    padding: StatusBar.currentHeight,
   },
-  form: {
-    backgroundColor: "white",
-    padding: 20,
-    borderRadius: 10,
-    shadowColor: "black",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 10,
-    elevation: 5,
+  listContainer: {
+    flex: 1,
+    paddingHorizontal: 10,
   },
-  input: {
-    height: 40,
-    borderColor: "gray",
-    borderWidth: 1,
+  card: {
+    backgroundColor: "#fff",
     borderRadius: 5,
-    marginBottom: 20,
     padding: 10,
+    borderWidth: 1,
   },
-  label: {
+  titleText: {
     fontSize: 20,
-    marginBottom: 10,
     fontWeight: "bold",
   },
-  image: {
-    width: 200,
-    height: 200,
-    alignSelf: "center",
-    marginBottom: 20,
+  bodyText: {
+    fontSize: 16,
+    color: "#333",
   },
-  errorText: {
-    color: "red",
-    marginBottom: 10,
+  headerText: {
+    fontSize: 24,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginBottom: 12,
+  },
+  footerText: {
+    fontSize: 20,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  loadingContainer: {
+    flex: 1,
+    backgroundColor: "#f5f5f5",
+    paddingTop: StatusBar.currentHeight,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
