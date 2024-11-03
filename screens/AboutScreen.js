@@ -6,6 +6,9 @@ const AboutScreen = ({ route }) => {
   //accessing the name parameter
   const { name } = route.params;
 
+  //using useNavigation hook
+  const navigation = useNavigation();
+
   //setting the title of the screen dynamically
   useLayoutEffect(() => {
     // using useEffect hook would also work but would cause a delay in updating the title
@@ -13,9 +16,6 @@ const AboutScreen = ({ route }) => {
       title: name,
     });
   }, [navigation, name]);
-
-  //using useNavigation hook
-  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <Text style={styles.text}>About {name}</Text>
