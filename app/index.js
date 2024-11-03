@@ -6,6 +6,7 @@ import ProfileScreen from "../screens/ProfileScreen";
 import { Ionicons } from "@expo/vector-icons";
 import { AboutStack } from "../milestones/app/indexComp8.1";
 
+// creating instance of createBottomTabNavigator
 const Tab = createBottomTabNavigator();
 
 export default function App() {
