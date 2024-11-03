@@ -7,9 +7,8 @@ import { Pressable, Text } from "react-native";
 
 const Stack = createNativeStackNavigator();
 
-export default function App() {
+export const AboutStack = () => {
   return (
-    // <NavigationContainer>
     <Stack.Navigator
       initialRouteName="Home"
       screenOptions={{
@@ -48,6 +47,9 @@ export default function App() {
         // })}
       />
     </Stack.Navigator>
-    // </NavigationContainer>
   );
+};
+
+export default function App() {
+  return <AboutStack />;
 }
