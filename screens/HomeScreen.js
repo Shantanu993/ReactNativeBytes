@@ -9,7 +9,10 @@ const HomeScreen = ({ navigation }) => {
       <Button
         title="Go to About"
         onPress={() => {
-          navigation.navigate("About");
+          navigation.navigate(
+            "About",
+            { name: "Shantanu" } //passing the name parameter using route parameters object
+          );
         }}
       />
     </View>

@@ -2,12 +2,14 @@ import React from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 import { useNavigation } from "expo-router";
 
-const AboutScreen = () => {
+const AboutScreen = ({ route }) => {
+  //accessing the name parameter
+  const { name } = route.params;
   //using useNavigation hook
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>About Screen</Text>
+      <Text style={styles.text}>About {name}</Text>
       <Button
         title="Go to Home Screen"
         onPress={() => {
