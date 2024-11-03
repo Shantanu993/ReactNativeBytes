@@ -11,9 +11,19 @@ const AboutScreen = ({ route }) => {
     <View style={styles.container}>
       <Text style={styles.text}>About {name}</Text>
       <Button
-        title="Go to Home Screen"
+        title="Update Name"
         onPress={() => {
-          navigation.navigate("Home");
+          navigation.setParams({
+            name: "updated name",
+          });
+        }}
+      />
+      <Button
+        title="Go back with data to Home Screen"
+        onPress={() => {
+          navigation.navigate("Home", {
+            result: "Data from About Screen",
+          });
         }}
       />
     </View>
