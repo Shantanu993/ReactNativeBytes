@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 import { useNavigation } from "expo-router";
 
 const AboutScreen = ({ route }) => {
   //accessing the name parameter
   const { name } = route.params;
+
+  //setting the title of the screen dynamically
+  useLayoutEffect(() => {
+    // using useEffect hook would also work but would cause a delay in updating the title
+    navigation.setOptions({
+      title: name,
+    });
+  }, [navigation, name]);
+
   //using useNavigation hook
   const navigation = useNavigation();
   return (
