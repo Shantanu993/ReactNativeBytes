@@ -6,17 +6,17 @@ import ProfileScreen from "../screens/ProfileScreen";
 import { Ionicons } from "@expo/vector-icons";
 import { AboutStack } from "../milestones/app/indexComp8.1";
 
-// creating instance of createBottomTabNavigator
+// Creating an instance of createBottomTabNavigator
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    // <NavigationContainer>
+    // <NavigationContainer> // NavigationContainer is required to be wrapped around the Tab.Navigator
     <Tab.Navigator
       screenOptions={{
-        tabBarLabelPosition: "below-icon",
-        tabBarShowLabel: true,
-        tabBarActiveTintColor: "red",
+        tabBarLabelPosition: "below-icon", // Position of the tab label
+        tabBarShowLabel: true, // Show the tab label
+        tabBarActiveTintColor: "red", // Color of the active tab
       }}
     >
       <Tab.Screen name="Course List" component={CourseListScreen} />
@@ -24,11 +24,11 @@ export default function App() {
         name="Profile"
         component={ProfileScreen}
         options={{
-          tabBarLabel: "My Profile",
+          tabBarLabel: "My Profile", // Custom label for the Profile tab
           tabBarIcon: ({ color }) => (
-            <Ionicons name="person" color={color} size={20} />
+            <Ionicons name="person" color={color} size={20} /> // Icon for the Profile tab
           ),
-          tabBarBadge: 3,
+          tabBarBadge: 3, // Badge for the Profile tab
         }}
       />
       <Tab.Screen name="Settings" component={SettingsScreen} />
@@ -37,10 +37,10 @@ export default function App() {
         name="About Stack"
         component={AboutStack}
         options={{
-          headerShown: false,
+          headerShown: false, // Hide the header for the About Stack
         }}
       />
     </Tab.Navigator>
-    // </NavigationContainer>
+    // </NavigationContainer> // Uncomment this line if NavigationContainer is required
   );
 }
