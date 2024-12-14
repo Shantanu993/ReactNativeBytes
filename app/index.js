@@ -1,4 +1,5 @@
 import "react-native-gesture-handler"; // Import this line before any other imports at the top
+// import { createBottomTabNavigator } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import SettingsScreen from "../screens/SettingsScreen";
 import CourseListScreen from "../screens/CourseListScreen";
